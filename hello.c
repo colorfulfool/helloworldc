@@ -12,6 +12,16 @@ int atoi(char *str) {
   return acc;
 }
 
+void itoa(int number, char *string) {
+  int i = 0;
+  for (; number != 0; i++) {
+    string[i] = number % 10 + 48;
+    number = number / 10;
+  }
+  string[i] = 0;
+  return i + 1;
+}
+
 int strlength(char *str) {
   int i=0;
   for (; str[i] != 0; i++) {}
@@ -30,14 +40,17 @@ int strcompare(char *str1, char *str2) {
 const int MAX_NAME_LEN = 256;
 
 int main() {
-  char number[256];
-  int number_len = read(0, number, 256);
-  number[number_len-1] = 0;
+  char read_buffer[256];
+  int read_len = read(0, read_buffer, 256);
+  read_buffer[read_len-1] = 0;
 
-  int parsed_number = atoi(number);
-  for (int i=0; i < parsed_number; i++) {
-    write(1, "*", 1);
-  }
+  int number = atoi(read_buffer);
+
+  char print_buffer[256];
+  int print_len;
+  write(1, "Entered number ", 15);
+  print_len = itoa(number, print_buffer);
+  write(1, print_buffer, print_len);
 
   return 0;
 }
