@@ -51,8 +51,17 @@ int main() {
 
   char print_buffer[256];
   int print_len;
+
   write(1, "Entered number ", 15);
   print_len = itoa(number, print_buffer);
+  write(1, print_buffer, print_len);
+
+  write(1, ", its half is ", 14);
+  print_len = itoa(number/2, print_buffer);
+  write(1, print_buffer, print_len);
+
+  write(1, ", square ", 9);
+  print_len = itoa(number*number, print_buffer);
   write(1, print_buffer, print_len);
 
   return 0;
