@@ -25,6 +25,13 @@ int itoa(int number, char *string) {
   return i + 1;
 }
 
+void print_number(int number) {
+  char print_buffer[256];
+  int print_len;
+  print_len = itoa(number, print_buffer);
+  write(1, print_buffer, print_len);
+}
+
 int strlength(char *str) {
   int i=0;
   for (; str[i] != 0; i++) {}
@@ -50,19 +57,15 @@ int main() {
   int number = atoi(read_buffer);
 
   char print_buffer[256];
-  int print_len;
 
   write(1, "Entered number ", 15);
-  print_len = itoa(number, print_buffer);
-  write(1, print_buffer, print_len);
+  print_number(number);
 
   write(1, ", its half is ", 14);
-  print_len = itoa(number/2, print_buffer);
-  write(1, print_buffer, print_len);
+  print_number(number/2);
 
   write(1, ", square ", 9);
-  print_len = itoa(number*number, print_buffer);
-  write(1, print_buffer, print_len);
+  print_number(number*number);
 
   return 0;
 }
