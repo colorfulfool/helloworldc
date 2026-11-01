@@ -12,13 +12,16 @@ int atoi(char *str) {
   return acc;
 }
 
-void itoa(int number, char *string) {
+int itoa(int number, char *string) {
   int i = 0;
   for (; number != 0; i++) {
     string[i] = number % 10 + 48;
     number = number / 10;
   }
   string[i] = 0;
+  for (int a = 0, b = i - 1; a < b; a++, b--) {
+    char t = string[a]; string[a] = string[b]; string[b] = t;
+  }
   return i + 1;
 }
 
